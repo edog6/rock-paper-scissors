@@ -31,16 +31,21 @@
             }
         }
 
+        function correctPlayerChoice(playerChoice) {
+            let lowerPlayerChoice = playerChoice.toLowerCase();
+            let firstLetterPC = lowerPlayerChoice.at(0);
+            let upperFirstLetterPC = firstLetterPC.toUpperCase();
+            let fixedPlayerChoice = lowerPlayerChoice.replace(firstLetterPC, upperFirstLetterPC);
+            return fixedPlayerChoice;
+        }
+
         function playGame() {
             let countPlayer = 0;
             let countComputer = 0;
 
             for (let i = 0; i < 5; i++) {
                 let playerChoice = prompt("Your choice: ");
-                let lowerPlayerChoice = playerChoice.toLowerCase();
-                let firstLetterPC = lowerPlayerChoice.at(0);
-                let upperFirstLetterPC = firstLetterPC.toUpperCase();
-                let fixedPlayerChoice = lowerPlayerChoice.replace(firstLetterPC, upperFirstLetterPC);
+                let fixedPlayerChoice = correctPlayerChoice(playerChoice);
 
                 let computerChoice = getComputerChoice();
 
@@ -65,6 +70,8 @@
                 console.log("The game is a tie!");
             }
         }
+
+        playGame();
     </script>
 </body>
 </html>
