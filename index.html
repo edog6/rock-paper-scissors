@@ -14,25 +14,55 @@
         }
 
         function playRound(playerSelection, computerSelection) {
-            let lowerPlayerSelection = playerSelection.toLowerCase();
-            let firstLetterPS = lowerPlayerSelection.at(0);
-            let upperFirstLetterPS = firstLetterPS.toUpperCase();
-            let fixedPlayerSelection = lowerPlayerSelection.replace(firstLetterPS, upperFirstLetterPS);
-
-            if (lowerPlayerSelection === computerSelection.toLowerCase()) {
-                return `It's a tie! ${fixedPlayerSelection} is tied with ${computerSelection}`;
-            } else if (fixedPlayerSelection === "Rock") {
+            if (playerSelection === computerSelection) {
+                return `It's a tie! ${playerSelection} is tied with ${computerSelection}`;
+            } else if (playerSelection === "Rock") {
                 return computerSelection === "Scissors"
-                    ? "You Win! Rock beats Scissors."
-                    : "You Lose! Paper beats Rock.";
-            } else if (fixedPlayerSelection === "Paper") {
+                    ? playerSelection
+                    : computerSelection;
+            } else if (playerSelection === "Paper") {
                 return computerSelection === "Rock"
-                    ? "You Win! Paper beats Rock."
-                    : "You Lose! Scissors beats Paper.";
+                    ? playerSelection
+                    : computerSelection;
             } else {
                 return computerSelection === "Paper"
-                    ? "You Win! Scissors beats Paper."
-                    : "You Lose! Rock beats Scissors.";
+                    ? playerSelection
+                    : computerSelection;
+            }
+        }
+
+        function playGame() {
+            let countPlayer = 0;
+            let countComputer = 0;
+
+            for (let i = 0; i < 5; i++) {
+                let playerChoice = prompt("Your choice: ");
+                let lowerPlayerChoice = playerChoice.toLowerCase();
+                let firstLetterPC = lowerPlayerChoice.at(0);
+                let upperFirstLetterPC = firstLetterPC.toUpperCase();
+                let fixedPlayerChoice = lowerPlayerChoice.replace(firstLetterPC, upperFirstLetterPC);
+
+                let computerChoice = getComputerChoice();
+
+                let winner = playRound(fixedPlayerChoice, computerChoice);
+
+                if (winner === fixedPlayerChoice) {
+                    console.log(`You win! ${fixedPlayerChoice} beats ${computerChoice}`);
+                    countPlayer++;
+                } else if (winner === computerChoice) {
+                    console.log(`You lose! ${computerChoice} beats ${fixedPlayerChoice}`);
+                    countComputer++;
+                } else {
+                    console.log(winner);
+                }
+            }
+
+            if (countPlayer > countComputer) {
+                console.log("You win the game!");
+            } else if (countPlayer < countComputer) {
+                console.log("You lose the game!");
+            } else {
+                console.log("The game is a tie!");
             }
         }
     </script>
