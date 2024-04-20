@@ -12,6 +12,29 @@
             let randomIndex = Math.floor(Math.random() * options.length);
             return options[randomIndex];
         }
+
+        function playRound(playerSelection, computerSelection) {
+            let lowerPlayerSelection = playerSelection.toLowerCase();
+            let firstLetterPS = lowerPlayerSelection.at(0);
+            let upperFirstLetterPS = firstLetterPS.toUpperCase();
+            let fixedPlayerSelection = lowerPlayerSelection.replace(firstLetterPS, upperFirstLetterPS);
+
+            if (lowerPlayerSelection === computerSelection.toLowerCase()) {
+                return `It's a tie! ${fixedPlayerSelection} is tied with ${computerSelection}`;
+            } else if (fixedPlayerSelection === "Rock") {
+                return computerSelection === "Scissors"
+                    ? "You Win! Rock beats Scissors."
+                    : "You Lose! Paper beats Rock.";
+            } else if (fixedPlayerSelection === "Paper") {
+                return computerSelection === "Rock"
+                    ? "You Win! Paper beats Rock."
+                    : "You Lose! Scissors beats Paper.";
+            } else {
+                return computerSelection === "Paper"
+                    ? "You Win! Scissors beats Paper."
+                    : "You Lose! Rock beats Scissors.";
+            }
+        }
     </script>
 </body>
 </html>
