@@ -39,39 +39,6 @@
             return fixedPlayerChoice;
         }
 
-        function playGame() {
-            let countPlayer = 0;
-            let countComputer = 0;
-
-            for (let i = 0; i < 5; i++) {
-                let playerChoice = prompt("Your choice: ");
-                let fixedPlayerChoice = correctPlayerChoice(playerChoice);
-
-                let computerChoice = getComputerChoice();
-
-                let winner = playRound(fixedPlayerChoice, computerChoice);
-
-                if (winner === fixedPlayerChoice) {
-                    console.log(`You win! ${fixedPlayerChoice} beats ${computerChoice}`);
-                    countPlayer++;
-                } else if (winner === computerChoice) {
-                    console.log(`You lose! ${computerChoice} beats ${fixedPlayerChoice}`);
-                    countComputer++;
-                } else {
-                    console.log(winner);
-                }
-            }
-
-            if (countPlayer > countComputer) {
-                console.log("You win the game!");
-            } else if (countPlayer < countComputer) {
-                console.log("You lose the game!");
-            } else {
-                console.log("The game is a tie!");
-            }
-        }
-
-        playGame();
     </script>
 </body>
 </html>
