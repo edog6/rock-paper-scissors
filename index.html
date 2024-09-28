@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button>Rock</button>
+    <button>Paper</button>
+    <button>Scissors</button>
+
     <script>
         function getComputerChoice() {
             let options = ["Rock", "Paper", "Scissors"];
@@ -38,6 +43,13 @@
             let fixedPlayerChoice = lowerPlayerChoice.replace(firstLetterPC, upperFirstLetterPC);
             return fixedPlayerChoice;
         }
+
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                playRound(button.innerText, getComputerChoice());
+            });
+        });
 
     </script>
 </body>
