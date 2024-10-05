@@ -12,10 +12,14 @@
     <button>Scissors</button>
 
     <div>
-        Result: 0
+        Human:<span id="human">0</span>
+        Computer:<span id="computer">0</span>
     </div>
 
     <script>
+        const human = document.getElementById("human");
+        const computer = document.getElementById("computer");
+
         function getComputerChoice() {
             let options = ["Rock", "Paper", "Scissors"];
             let randomIndex = Math.floor(Math.random() * options.length);
@@ -23,20 +27,22 @@
         }
 
         function playRound(playerSelection, computerSelection) {
+
             if (playerSelection === computerSelection) {
-                return `It's a tie! ${playerSelection} is tied with ${computerSelection}`;
+                computer.innerText++;
+                human.innerText++;
             } else if (playerSelection === "Rock") {
-                return computerSelection === "Scissors"
-                    ? playerSelection
-                    : computerSelection;
+                computerSelection === "Paper"
+                ? computer.innerText++
+                : human.innerText++;
             } else if (playerSelection === "Paper") {
-                return computerSelection === "Rock"
-                    ? playerSelection
-                    : computerSelection;
+                computerSelection === "Scissors"
+                ? computer.innerText++
+                : human.innerText++;
             } else {
-                return computerSelection === "Paper"
-                    ? playerSelection
-                    : computerSelection;
+                computerSelection === "Rock"
+                ? computer.innerText++
+                : human.innerText++;
             }
         }
 
