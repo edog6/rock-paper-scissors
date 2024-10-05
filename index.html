@@ -14,11 +14,15 @@
     <div>
         Human:<span id="human">0</span>
         Computer:<span id="computer">0</span>
+        <div id="winner">
+            Winner: 
+        </div>
     </div>
 
     <script>
         const human = document.getElementById("human");
         const computer = document.getElementById("computer");
+        const winner = document.getElementById("winner");
 
         function getComputerChoice() {
             let options = ["Rock", "Paper", "Scissors"];
@@ -28,10 +32,7 @@
 
         function playRound(playerSelection, computerSelection) {
 
-            if (playerSelection === computerSelection) {
-                computer.innerText++;
-                human.innerText++;
-            } else if (playerSelection === "Rock") {
+            if (playerSelection === "Rock") {
                 computerSelection === "Paper"
                 ? computer.innerText++
                 : human.innerText++;
@@ -44,6 +45,19 @@
                 ? computer.innerText++
                 : human.innerText++;
             }
+
+            if (computer.innerText === "5") {
+                winner.innerText = "Winner: ";
+                winner.innerText += "Computer";
+                human.innerText = 0;
+                computer.innerText = 0;
+            } else if (human.innerText === "5") {
+                winner.innerText = "Winner: ";
+                winner.innerText += "Human";
+                human.innerText = 0;
+                computer.innerText = 0;
+            }
+
         }
 
         function correctPlayerChoice(playerChoice) {
